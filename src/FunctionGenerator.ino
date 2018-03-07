@@ -66,13 +66,13 @@ int sinNum = 0;
 int sinInc;
 
 void setup() {
-  
+
   //set port/pin  mode
   DDRD = 0xFF;//all outputs
   DDRC = 0x00;//all inputs
   DDRB = 0xFF;//all outputs
   //TIMER INTERRUPT SETUP
-  
+
   cli();//disable interrupts
   //timer 1:
   TCCR1A = 0;// set entire TCCR1A register to 0
@@ -84,25 +84,25 @@ void setup() {
   // Set CS10 bit for 0 prescaler
   TCCR1B |= (1 << CS10);
   // enable timer compare interrupt
-  TIMSK1 |= (1 << OCIE1A); 
-  
+  TIMSK1 |= (1 << OCIE1A);
+
   samplerate = 100000;
-  
+
   PORTB = 0;
   PORTB = 1<<type;
-  
+
   //initialize variables
   frequency = analogRead(A5);//initialize frequency
   freqscaled = 48*frequency+1;//from 1 to ~50,000\
   period = samplerate/freqscaled;
-   
+
   pulseWidth = analogRead(A4);//initalize pulse width
   pulseWidthScaled = int(pulseWidth/1023*period);
-  
+
   triInc = 511/period;
   sawInc = 255/period;
   sinInc = 20000/period;
-  
+
   sei();//enable interrupts
 }
 
@@ -176,8 +176,8 @@ else if (digitalRead(A3)==LOW){
     }
   }
 }
-    
- 
+
+
 
 ISR(TIMER1_COMPA_vect){//timer 1 interrupt
   //increment t and reset each time it reaches period

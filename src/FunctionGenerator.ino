@@ -108,7 +108,7 @@ void setup() {
 
 void checkFreq() {
   freqCurrent = analogRead(A5);
-  if (abs(freqCurrent-frequency)>freqTolerance){ // if reading from pot exceeds tolerance
+  if (abs(freqCurrent-frequency)>freqTolerance) { // if reading from pot exceeds tolerance
     frequency = freqCurrent; // new frequency- number between 0 and 1024
     freqscaled = 48*frequency+1; // from 1 to ~50,000
     period = samplerate/freqscaled;
